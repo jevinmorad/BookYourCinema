@@ -8,7 +8,9 @@ connectDB();
 
 app.use(express.json())
 
-app.use('/movies', require('./routes/movie'))
+app.use('/movies', require('./routes/movie'));
+app.use('/theaters', require('./routes/theater'));
+app.use('/showtime',  require('./routes/showtime'))
 
 const port = process.env.PORT
 app.listen(port, ()=>{console.log(`Server running on port ${port}`);})
