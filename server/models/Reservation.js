@@ -1,3 +1,6 @@
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
+
 const BookingSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
@@ -24,4 +27,4 @@ const BookingSchema = new Schema({
     },
 }, { timestamps: true });
 
-module.exports = mongoose.model('Booking', BookingSchema);  
+module.exports = mongoose.model('Reservation', BookingSchema);  
