@@ -1,60 +1,64 @@
 const Movie = require('../models/Movie')
 
+
+// Add movie
+exports.addMovie = async (req, res) => {
+    const newMovie = new Movie(req.body);
+    try {
+        await newMovie.save();
+        res.send(newMovie);
+    }
+    catch (err) {
+        res.status(500).send(err.message);
+    }
+}
+
 // Get all movies
 exports.getMovies = async (req, res) => {
     try {
         const movies = await Movie.find()
-        res.json(movies);
+        res.send(movies);
     }
     catch (err) {
-        res.status(500).send('Server error');
-    }
-}
-
-// Add movie
-exports.addMovie = async (req, res) => {
-    try {
-        newMovie = new Movie({ ...req.body })
-        const data = await newMovie.save();
-        res.json(newMovie);
-    }
-    catch (err) {
-        res.status(500).send('Server error');
-    }
-}
-
-// Delete movie
-exports.deleteMovie = async (req, res) => {
-    try {
-        const name = req.params.name;
-
-        const deleteMovie = await Movie.findOneAndDelete({title: name})
-
-        if (!deleteMovie) {
-            res.status(404).json({message: 'Movie not found'});
-        }
-
-        res.send(`${name}: deleted`);
-    }
-    catch(err) {
-        res.status(500).json({message: 'Server error', err});
+        res.status(500).send(err.message);
     }
 }
 
 // Search movie
 exports.searchMovie = async (req, res) => {
     try {
-        const movie = await Movie.find({
-            title: {
-                $regex: req.params.name
-            }
-        })
-        if (movie.length==0) {
-            res.status(404).json({message: 'Movie not found'});
-        }
-        res.json(movie);
+        const movie = await Movie.findById(req.params.id)
+        if (!movie) res.status(404).send("Movie not found");
+        res.send(movie);
     }
-    catch(err) {
-        res.status(500).json({message: 'Server error ', err});
+    catch (err) {
+        res.status(f00).send(err.message);
+    }
+}
+
+// Update movie
+exports.updateMovie = async (req, res) => {
+    try {
+        let movie = await Movie.findById(req.params.id);
+        if (!movie) res.status(404).send("Movie not found");
+        
+        Object.assign(movie, req.body)
+        await movie.save();
+        res.send("Updated "+movie.title)
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+}
+
+
+// Delete movie
+exports.deleteMovie = async (req, res) => {
+    try {
+        const deleteMovie = await Movie.findByIdAndDelete(req.params.id)
+        if (!deleteMovie) res.status(404).send("Movie not found");
+        res.send(`${deleteMovie.name}: deleted`);
+    }
+    catch (err) {
+        res.status(500).send(err.message);
     }
 }
