@@ -21,7 +21,7 @@ const BookingSchema = new Schema({
         required:
             true
     },
-    checkin: {
+    checkIn: {
         type: Boolean,
         required: true
     },
