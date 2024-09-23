@@ -38,10 +38,22 @@ const MovieSchema = new Schema({
         type: Number,
         require: true
     },
-    rating:  {
+    rating: {
         type: Number,
         require: true
-    }
-},{ timestamps: true});
+    },
+    admin: {
+        type: Schema.Types.ObjectId,
+        ref: 'Admin',
+        require: true
+    },
+    bookings: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Reservation',
+            require: true
+        }
+    ]
+}, { timestamps: true });
 
 module.exports = mongoose.model('Movie', MovieSchema)
