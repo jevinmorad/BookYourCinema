@@ -14,23 +14,7 @@ const TheaterSchema = new Schema({
     ticketPrice: {
         type: String,
         required: true
-    },
-    screens: [
-        {
-            screenId: {
-                type: String,
-                required: true
-            },
-            totalSeats: {
-                type: Number,
-                required: true
-            },
-            seatingLayout: {
-                type: [Schema.Types.Mixed],
-                required: true,
-            }
-        }
-    ]
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Theater', TheaterSchema);

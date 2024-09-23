@@ -1,5 +1,5 @@
 const express = require('express');
-const { createReservation, getReservation, searchReservation, checkIn, updateReservation, deleteReservation } = require('../controllers/reservationController');
+const { createReservation, getReservation, searchReservation, checkIn, updateReservation, deleteReservation } = require('../controllers/reservation-controller');
 
 const route = express.Router();
 
@@ -7,10 +7,7 @@ const route = express.Router();
 route.post('/', createReservation);
 
 // Get reservations
-route.get('/', getReservation);
-
-// Search reservation
-route.get('/:id', searchReservation);
+route.get('/:id', getReservation);
 
 // Check in 
 route.get('/checkIn/:id', checkIn);

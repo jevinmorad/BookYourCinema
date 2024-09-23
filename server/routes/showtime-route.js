@@ -1,5 +1,5 @@
 const express = require('express');
-const { addShowtime, getShowtime, searchShowtime, updateShowtime, deleteShowtime } = require('../controllers/showtimeController');
+const { addShowtime, getShowtime, searchShowtime, updateShowtime, deleteShowtime } = require('../controllers/showtime-controller');
 
 const route = express.Router();
 

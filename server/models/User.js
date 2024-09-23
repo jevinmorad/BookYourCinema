@@ -18,7 +18,13 @@ const UserSchema = new Schema({
     phone: {
         type: String,
         required: true
-    }
-},{ timestamps: true });
+    },
+    bookings: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Reservation'
+        }
+    ]
+}, { timestamps: true });
 
 module.exports = mongoose.model('User', UserSchema);

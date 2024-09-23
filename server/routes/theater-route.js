@@ -1,5 +1,5 @@
 const express = require('express')
-const { addTheater, getTheater, searchTheater, deleteTheater, updateTheater } = require('../controllers/theaterController')
+const { addTheater, getTheater, searchTheater, deleteTheater, updateTheater } = require('../controllers/theater-controller')
 
 const route = express.Router()
 

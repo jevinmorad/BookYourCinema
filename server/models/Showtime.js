@@ -12,6 +12,22 @@ const ShowtimeSchema = new Schema({
         ref: 'Theater',
         required: true
     },
+    screens: [
+        {
+            screenId: {
+                type: String,
+                required: true
+            },
+            totalSeats: {
+                type: Number,
+                required: true
+            },
+            seatingLayout: {
+                type: [Schema.Types.Mixed],
+                required: true,
+            }
+        }
+    ],
     showDate: {
         type: Date,
         required: true
