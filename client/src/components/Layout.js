@@ -1,19 +1,29 @@
-import { Outlet, useNavigate, Link } from "react-router-dom"
+import { Outlet, Link } from "react-router-dom"
+import SignIn from './Auth/AuthForm'
 
 export default function Layout() {
-    const navigate = useNavigate();
     return (
         <>
             <nav>
                 <div className={`navbar container px-3`}>
                     <div className={`container-fluid`}>
+                        {/* Logo */}
                         <a className={`navbar-brand`}>Navbar</a>
+
+                        {/* Search */}
                         <form className={`d-flex col-md-5`} role="search">
                             <input className={`form-control me-2`} type="search" placeholder="Search" aria-label="Search" />
                         </form>
-                        <button className={`btn btn-danger text-white`} type="signup" onClick={() => navigate('/login')}>Sign In</button>
+
+                        {/* Sign In */}
+                        <div className="SignIn">
+                            <SignIn/>
+                        </div>
+
                     </div>
                 </div>
+
+                {/* links */}
                 <div className={`links`} style={{ width: "100%", backgroundColor: "#f5f5f5" }}>
                     <div className={`container my-3 `}>
                         <ul className={`nav d-flex justify-content-between`}>
@@ -26,9 +36,9 @@ export default function Layout() {
                         </ul>
                     </div>
                 </div>
-            </nav>
+            </nav >
             <div className="menu">
-                <Outlet/>
+                <Outlet />
             </div>
         </>
     )

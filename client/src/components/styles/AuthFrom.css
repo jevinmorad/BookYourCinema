@@ -1,0 +1,81 @@
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 10px;
+  color: #333;
+}
+
+.form-underline {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.form-underline::placeholder {
+  color: #999;
+  font-size: 14px;
+  opacity: 1;
+}
+
+.form-underline:focus-visible {
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+}
+
+.btn-submit {
+  padding: 10px 30px;
+  background-color: #dc3545;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 10px auto;
+  display: block;
+  width: 87%;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-submit:hover,
+.btn-submit:focus {
+  background-color: #c82333;
+  box-shadow: 0px 6px 15px rgba(220, 53, 69, 0.2);
+}
+
+.sign-in {
+  text-align: center;
+  color: rgb(126, 126, 126);
+}
+
+.sign-in button {
+  border: none;
+  background-color: white;
+  padding: 0px;
+  color: rgb(0, 0, 225, 0.95);
+  text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+  .form-container {
+    padding: 20px;
+  }
+  .btn-submit {
+    width: 100%;
+  }
+}
