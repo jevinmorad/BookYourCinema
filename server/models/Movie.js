@@ -51,7 +51,6 @@ const MovieSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: 'Reservation',
-            require: true
         }
     ]
 }, { timestamps: true });
