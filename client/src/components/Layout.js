@@ -1,5 +1,5 @@
 import { Outlet, Link } from "react-router-dom"
-import SignIn from './Auth/AuthForm'
+import Auth from "./Auth/UserAuth"
 
 export default function Layout() {
     return (
@@ -17,7 +17,7 @@ export default function Layout() {
 
                         {/* Sign In */}
                         <div className="SignIn">
-                            <SignIn/>
+                            <Auth/>
                         </div>
 
                     </div>

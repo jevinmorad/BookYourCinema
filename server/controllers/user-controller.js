@@ -3,30 +3,31 @@ const bcrypt = require('bcrypt');
 
 // Sign up
 exports.signup = async (req, res) => {
-    let {username, email, password, phone} = new User(req.body);
+    let { username, email, password, phone } = req.body;
 
     if (!username || username.trim() === "" || !email || email.trim() === "" || !password || password.trim() === "" || !phone) {
-        res.status(422).json({ message: "All fields are required." });
+        return res.status(422).json({ message: "All fields are required." });
     }
 
-    const existingUser = User.findOne({email});
-    if(existingUser) {
-        res.status(400).json({ message: "User already exist" });
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+        return res.status(400).json({ message: "User already exist" });
     }
 
     let user;
     try {
-        password = await bcrypt.hash(password, 10);
-        user = new User({username, email, password, phone});
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = new User({ username, email, password: hashedPassword, phone });
         await user.save();
-        res.status(201).json({ message: 'User created successfully', user });
+
+        return res.status(201).json({ message: 'User created successfully', user });
     } catch (err) {
-        res.status(500).json({ message: err.message || "Unexpected error occurred" });
+        return res.status(500).json({ message: err.message || "Unexpected error occurred" });
     }
 }
 
 // Login
-exports.login = async (req, res) => {
+exports.signIn = async (req, res) => {
     const { email, password } = req.body;
 
     try {
