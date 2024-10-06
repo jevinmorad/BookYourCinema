@@ -5,14 +5,16 @@ export const getAllMovies = async () => {
 };
 
 export const userAuthRequest = async (data, isSignIn) => {
-    const res = await axios
-        .post(`/user/${isSignIn ? "signin" : "signup"}`, {
-            username: isSignIn ? undefined : data.name,
+    try {
+        const res = await axios.post(`/user/${isSignIn ? "signin" : "signup"}`, {
+            ...(isSignIn ? {} : { username: data.name, phone: data.mobile }),
             email: data.email,
             password: data.password,
-            phone: isSignIn ? undefined : data.mobile,
-        })
-        .catch((err) => console.log(err));
+        });
+        
+        return res.data;
 
-    return res.data;
+    } catch (err) {
+        console.error('Error during API request:', err.response?.data || err.message);
+    }
 };

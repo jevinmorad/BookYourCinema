@@ -1,5 +1,6 @@
 import { useState } from "react";
 import '../styles/AuthFrom.css';
+import swal from 'sweetalert';
 
 export default function AuthForm({ onSubmit }) {
     const [isSignIn, setIsSignIn] = useState(true);
@@ -17,9 +18,22 @@ export default function AuthForm({ onSubmit }) {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onSubmit(input, isSignIn);
+        try {
+            await onSubmit(input, isSignIn);
+
+            // Close the model
+            const modalElement = document.getElementById('exampleModal');
+            const bootstrapModal = window.bootstrap.Modal.getInstance(modalElement);
+            bootstrapModal.hide();
+            
+            // Success message
+            swal("Good job!", isSignIn ? "Signed in successfully!" : "Account created successfully!", "success");
+        } catch (err) {
+            console.error("Form submission failed", err);
+            alert("Error occurred during form submission. Please try again.");
+        }
     };
 
     return (
