@@ -57,7 +57,7 @@ export default function MovieBooking() {
             >
                 <div className="d-flex align-items-center container p-4">
                     {/* Left side: Movie Poster */}
-                    <div className="pe-5 text-center position-relative">
+                    <div className="text-center position-relative">
                         <img
                             src={movie.posterUrl}
                             alt={`${movie.title} Poster`}
@@ -75,7 +75,7 @@ export default function MovieBooking() {
                     </div>
 
                     {/* Right side: Movie Details */}
-                    <div className="movie-detail">
+                    <div className="movie-detail" style={{marginLeft: "45px"}}>
                         <h2 className="fs-1 fw-bold">{movie.title}</h2>
 
                         <div className="mb-2 star d-flex p-3" style={{backgroundColor: "#333", borderRadius: "5px"}}>
