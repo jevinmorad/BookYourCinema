@@ -1,12 +1,12 @@
 const express = require("express");
-const { signup, login, getAll, updateAdmin, deleteAdmin } = require("../controllers/admin-controller");
+const { signup, signIn, getAll, updateAdmin, deleteAdmin } = require("../controllers/admin-controller");
 const route = express.Router();
 
 // Sign up
 route.post('/signup', signup);
 
-// Log in
-route.post('/login', login);
+// Sign in
+route.post('/signin', signIn);
 
 // Get all admin
 route.get('/', getAll);

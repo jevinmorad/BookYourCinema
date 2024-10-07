@@ -5,30 +5,31 @@ require('dotenv').config()
 
 // Sign up
 exports.signup = async (req, res) => {
-    let { email, password } = new Admin(req.body);
+    let { adminName, email, password, phone } = req.body;
 
-    if (!email || email.trim() === "" || !password || password.trim() === "") {
-        res.status(422).json({ message: "All fields are required." });
+    if (!adminName || adminName.trim() === "" || !email || email.trim() === "" || !password || password.trim() === "" || !phone) {
+        return res.status(422).json({ message: "All fields are required." });
     }
 
-    let existingAdmin = await Admin.findOne({ email });
+    const existingAdmin = await Admin.findOne({ email });
     if (existingAdmin) {
-        res.status(400).json({ message: "Admin already exist" });
+        return res.status(400).json({ message: "Admin already exist" });
     }
 
     let admin;
     try {
-        req.body.password = await bcrypt.hash(password, 10);
-        admin = new Admin(req.body);
+        const hashedPassword = await bcrypt.hash(password, 10);
+        admin = new Admin({ adminName, email, password: hashedPassword, phone });
         await admin.save();
-        res.status(201).json({ message: 'Admin created successfully', admin });
+
+        return res.status(201).json({ message: 'Admin created successfully', admin });
     } catch (err) {
-        res.status(500).json({ message: err.message || "Unexpected error occurred" });
+        return res.status(500).json({ message: err.message || "Unexpected error occurred" });
     }
 }
 
-// Login
-exports.login = async (req, res) => {
+// Sign in
+exports.signIn = async (req, res) => {
     try {
         const admin = await Admin.findOne({ email: req.body.email });
         
