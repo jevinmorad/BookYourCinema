@@ -2,7 +2,7 @@ import { useState } from "react";
 import '../styles/AuthFrom.css';
 import swal from 'sweetalert';
 
-export default function AuthForm({ onSubmit }) {
+export default function AuthForm({ onSubmit, isUser = true }) {
     const [isSignIn, setIsSignIn] = useState(true);
     const [input, setInput] = useState({
         name: "",
@@ -38,7 +38,9 @@ export default function AuthForm({ onSubmit }) {
 
     return (
         <>
-            <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"> Sign In </button>
+            {isUser && (
+                <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"> Sign In </button>
+            )}
 
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">

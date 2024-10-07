@@ -31,7 +31,7 @@ export default function Layout() {
                                 <Link className={`nav-link text-dark`} to="/">Movies</Link>
                             </li>
                             <li className={`nav-item`}>
-                                <a className={`nav-link text-dark`} href="#">ListYourShow</a>
+                                <Link className={`nav-link text-dark`} to={"/admin"}>ListYourShow</Link>
                             </li>
                         </ul>
                     </div>
