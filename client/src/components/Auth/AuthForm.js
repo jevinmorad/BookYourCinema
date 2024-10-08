@@ -40,10 +40,6 @@ export default function AuthForm({ onSubmit, isUser, showModal, handleClose}) {
 
     return (
         <>
-            {/* {isUser && (
-                <Button variant="danger" onClick={showModal}> Sign in </Button>
-            )} */}
-
             <Modal show={showModal} onHide={handleClose} centered>
                 <Modal.Header className="bg-danger text-white" closeButton>
                     <Modal.Title >{isSignIn ? "Sign In" : "Sign Up"}</Modal.Title>
