@@ -1,17 +1,32 @@
+import { useState } from 'react';
 import { userAuthRequest } from '../../api-helpers/api-helper';
 import AuthForm from './AuthForm';
 
-const Auth = () => {
+const UserAuth = () => {
+    const [showModal, setShowModal] = useState(false);
+
     const handleAuthSubmit = (inputData, isSignIn) => {
         userAuthRequest(inputData, isSignIn)
-        .catch((err)=>console.error(err))
+            .catch((err) => console.error(err))
     };
 
+    const handleClose = () => setShowModal(false);
+    const handleShow = () => setShowModal(true);
+
     return (
-        <div>
-            <AuthForm onSubmit={handleAuthSubmit} />
-        </div>
+        <>
+            <button onClick={handleShow} className="btn btn-danger">
+                Sign in
+            </button>
+
+            <AuthForm
+                onSubmit={handleAuthSubmit}
+                isUser={true}
+                showModal={showModal}
+                handleClose={handleClose}
+            />
+        </>
     );
 };
 
-export default Auth;
+export default UserAuth;

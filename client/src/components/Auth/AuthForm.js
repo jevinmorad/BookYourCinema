@@ -1,9 +1,13 @@
 import { useState } from "react";
 import '../styles/AuthFrom.css';
 import swal from 'sweetalert';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
-export default function AuthForm({ onSubmit, isUser = true }) {
+export default function AuthForm({ onSubmit, isUser, showModal, handleClose}) {
+
     const [isSignIn, setIsSignIn] = useState(true);
+
     const [input, setInput] = useState({
         name: "",
         mobile: "",
@@ -23,11 +27,9 @@ export default function AuthForm({ onSubmit, isUser = true }) {
         try {
             await onSubmit(input, isSignIn);
 
-            // Close the model
-            const modalElement = document.getElementById('exampleModal');
-            const bootstrapModal = window.bootstrap.Modal.getInstance(modalElement);
-            bootstrapModal.hide();
-            
+            // close the modal
+            handleClose();
+
             // Success message
             swal("Good job!", isSignIn ? "Signed in successfully!" : "Account created successfully!", "success");
         } catch (err) {
@@ -38,20 +40,16 @@ export default function AuthForm({ onSubmit, isUser = true }) {
 
     return (
         <>
-            {isUser && (
-                <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"> Sign In </button>
-            )}
+            {/* {isUser && (
+                <Button variant="danger" onClick={showModal}> Sign in </Button>
+            )} */}
 
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                        <div className="modal-header bg-danger text-white">
-                            <h3 className="modal-title ps-2" id="exampleModalLabel">{isSignIn ? "Sign In" : "Sign Up"}</h3>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-
-                        <div className="modal-body">
-                            <form onSubmit={handleSubmit}>
+            <Modal show={showModal} onHide={handleClose} centered>
+                <Modal.Header className="bg-danger text-white" closeButton>
+                    <Modal.Title >{isSignIn ? "Sign In" : "Sign Up"}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <form onSubmit={handleSubmit}>
                                 <div className="form-container">
                                     {!isSignIn && (
                                         <>
@@ -123,10 +121,8 @@ export default function AuthForm({ onSubmit, isUser = true }) {
                                     {isSignIn ? "Sign Up" : "Sign In"}
                                 </button>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </Modal.Body>
+            </Modal >
         </>
     );
 }
