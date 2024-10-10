@@ -1,10 +1,9 @@
 import { useState } from "react";
 import '../styles/AuthFrom.css';
 import swal from 'sweetalert';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-export default function AuthForm({ onSubmit, isUser, showModal, handleClose}) {
+export default function AuthForm({ onSubmit, showModal, handleClose}) {
 
     const [isSignIn, setIsSignIn] = useState(true);
 

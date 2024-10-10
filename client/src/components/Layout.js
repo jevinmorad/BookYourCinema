@@ -17,7 +17,7 @@ export default function Layout() {
 
                         {/* Sign In */}
                         <div className="SignIn">
-                            <Auth/>
+                            <Auth />
                         </div>
 
                     </div>
@@ -31,7 +31,7 @@ export default function Layout() {
                                 <Link className={`nav-link text-dark`} to="/">Movies</Link>
                             </li>
                             <li className={`nav-item`}>
-                                <Link className={`nav-link text-dark`} to={"/admin"}>ListYourShow</Link>
+                                <Link className={`nav-link text-dark`} to={"/List-your-show/login"}>ListYourShow</Link>
                             </li>
                         </ul>
                     </div>
