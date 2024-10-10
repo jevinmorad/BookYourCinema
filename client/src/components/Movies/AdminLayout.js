@@ -10,11 +10,6 @@ function AdminLayout() {
                         {/* Logo */}
                         <a className={`navbar-brand`}>Navbar</a>
 
-                        {/* Search */}
-                        <form className={`d-flex col-md-5`} role="search">
-                            <input className={`form-control me-2`} type="search" placeholder="Search" aria-label="Search" />
-                        </form>
-
                         {/* Sign In */}
                         <div className="SignIn">
                             <AdminAuth />
