@@ -41,9 +41,9 @@ exports.signIn = async (req, res) => {
         if (!isPasswordCorrect) {
             res.status(400).json({ message: "Incorrect password" });
         }
-        const token = jwt.sign({id: admin._id}, process.env.JWT_SECRET, {expiresIn: "1d"});
+        const token = jwt.sign({_id: admin._id}, process.env.JWT_SECRET, {expiresIn: "1d"});
 
-        res.json({ message: "Logged in successfully", token, id:admin._id});
+        res.json({ message: "Logged in successfully", token, _id:admin._id});
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

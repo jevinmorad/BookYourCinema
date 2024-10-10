@@ -20,7 +20,7 @@ exports.signup = async (req, res) => {
         const user = new User({ username, email, password: hashedPassword, phone });
         await user.save();
 
-        return res.status(201).json({ message: 'User created successfully', user });
+        return res.status(201).json({ message: 'User created successfully', _id:user._id });
     } catch (err) {
         return res.status(500).json({ message: err.message || "Unexpected error occurred" });
     }
@@ -41,7 +41,7 @@ exports.signIn = async (req, res) => {
             res.status(400).json({ message: "Incorrect password" });
         }
 
-        res.json({ message: "Logged in successfully" });
+        res.status(201).json({ message: "Logged in successfully", _id:user._id });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -64,7 +64,7 @@ exports.searchUser = async (req, res) => {
         if (!user) {
             res.status(404).json({ message: "User not found" });
         }
-        res.json(user);
+        res.status(201).json({ message: "User found", _id:user._id });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
